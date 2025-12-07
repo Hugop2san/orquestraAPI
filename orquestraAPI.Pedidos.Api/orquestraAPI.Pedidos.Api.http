@@ -1,0 +1,6 @@
+@orquestraAPI.Pedidos.Api_HostAddress = http://localhost:5130
+
+GET {{orquestraAPI.Pedidos.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
