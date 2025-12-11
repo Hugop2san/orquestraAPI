@@ -9,14 +9,14 @@ namespace orquestraAPI.Pedidos.Domain.Interfaces
 {
     public interface IProdutoRepository
     {
-        public Task<IEnumerable<Produto>> GetAll();
-        public Task<Produto> GetById(int id);
-        public Task Add(Produto produto);
-        public Task Update(Produto produto);
-        public Task Delete(int id);
+        Task<IEnumerable<Produto>> GetAll();
+        Task<Produto?> GetById(int id); // permite retorno nulo
+        Task Add(Produto produto);
+        Task Update(Produto produto);
+        Task Delete(int id);
 
         // análises
-        public Task<int> TotalProdutos();
-        public Task<Produto> ProdutoMaisCaro();
+        Task<int> TotalProdutos();
+        Task<Produto?> ProdutoMaisCaro(); // permite retorno nulo caso não haja produtos
     }
 }

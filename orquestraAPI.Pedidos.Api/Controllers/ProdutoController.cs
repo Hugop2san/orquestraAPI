@@ -1,9 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc;
+
 using orquestraAPI.Pedidos.Application.Services;
 using orquestraAPI.Pedidos.Application.DTOs;
-using orquestraAPI.Pedidos.Application.Services;
-using orquestraAPI.Pedidos.Domain.Entities; // se não estiver referenciado, dá erro
+using orquestraAPI.Pedidos.Domain.Entities;
 
 
 namespace orquestraAPI.Pedidos.Api.Controllers
@@ -22,7 +21,8 @@ namespace orquestraAPI.Pedidos.Api.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            return Ok(await _service.BuscarTodos());
+            var produtos = await _service.BuscarTodos();
+            return Ok(produtos);
         }
 
         [HttpGet("{id}")]

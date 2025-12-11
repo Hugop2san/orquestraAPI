@@ -1,18 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using orquestraAPI.Pedidos.Domain.Entities;
+﻿using orquestraAPI.Pedidos.Domain.Entities;
 using orquestraAPI.Pedidos.Domain.Interfaces;
 using orquestraAPI.Pedidos.Application.DTOs;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace orquestraAPI.Pedidos.Application.Services
 {
     public class ProdutoService
     {
-       
         private readonly IProdutoRepository _repository;
 
         public ProdutoService(IProdutoRepository repository)
@@ -59,5 +54,4 @@ namespace orquestraAPI.Pedidos.Application.Services
             await _repository.Delete(id);
         }
     }
-    
 }
