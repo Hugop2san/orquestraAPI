@@ -1,23 +1,59 @@
-﻿using orquestraAPI.Pedidos.Domain.Entities;
+﻿using System.Net.Http.Json;
+using orquestraAPI.Pedidos.Domain.Entities;
 using orquestraAPI.Pedidos.Domain.Interfaces;
+using orquestraAPI.Pedidos.Infrastructure.ExternalModels;
+
+
 
 namespace orquestraAPI.Pedidos.Infrastructure.Repositories
 {
     public class ProdutoRepository : IProdutoRepository
     {
-        private static readonly List<Produto> _produtos = new()
-        {
-            new Produto { Id = 1, Nome = "Notebook", Preco = 3200, Quantidade = 5 },
-            new Produto { Id = 2, Nome = "Mouse Gamer", Preco = 150, Quantidade = 10 },
-        };
 
-        public Task<IEnumerable<Produto>> GetAll()
+        // INSTANCIA, SERIALIZAÇÃO DOS DADOS DA API, ETC
+        private readonly HttpClient _http;
+        public ProdutoRepository(HttpClient http)
         {
-            return Task.FromResult(_produtos.AsEnumerable());
+            _http = http;
         }
+
+
+        //METODOS INTERFACES COM DADOS DA API 
+        public async Task<IEnumerable<Produto>> GetAll()
+        {
+            var apiResponse = await _http.GetFromJsonAsync<List<ProdutoApiModel>>(
+                "https://693a8f799b80ba7262ca6b6c.mockapi.io/produto"
+                );
+
+            if (apiResponse is null) return Enumerable.Empty<Produto>();
+
+
+            return apiResponse.Select(
+                p => new Produto
+                {
+                    Id = int.Parse(p.id),
+                    Nome = p.nome,
+                    Preco = decimal.Parse(p.preco),
+                    Quantidade = int.Parse(p.quantidade)
+                }
+                );
+        }
+
+
+
+
+        // AJUSTAR OS OUTROS METODOS PARA BUSCAR NA API TAMBEM !!!!!!!!
 
         public Task<Produto?> GetById(int id)
         {
+
+
+
+
+
+
+
+
             return Task.FromResult(_produtos.FirstOrDefault(p => p.Id == id));
         }
 
