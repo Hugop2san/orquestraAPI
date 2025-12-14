@@ -33,6 +33,7 @@ namespace orquestraAPI.Pedidos.Api.Controllers
             return Ok(produto);
         }
 
+        /*
         [HttpPost]
         public async Task<IActionResult> Create(ProdutoDTO dto)
         {
@@ -53,5 +54,6 @@ namespace orquestraAPI.Pedidos.Api.Controllers
             await _service.Remover(id);
             return Ok();
         }
+        */
     }
 }

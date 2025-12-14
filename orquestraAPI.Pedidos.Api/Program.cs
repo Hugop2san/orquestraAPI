@@ -22,6 +22,11 @@ builder.Services.AddSwaggerGen(); // não precisamos de OpenApiInfo aqui
 builder.Services.AddScoped<IProdutoRepository, ProdutoRepository>();
 builder.Services.AddScoped<ProdutoService>();
 
+// ================================
+// Injeção de dependência de HttpClient
+// ================================
+builder.Services.AddHttpClient<IProdutoRepository, ProdutoRepository>();
+
 var app = builder.Build();
 
 // ================================

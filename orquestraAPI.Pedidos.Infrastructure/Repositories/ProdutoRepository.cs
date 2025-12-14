@@ -39,20 +39,34 @@ namespace orquestraAPI.Pedidos.Infrastructure.Repositories
                 );
         }
 
+        //METODOS INTERFACES COM DADOS DA API 
+        public async Task<Produto?> GetById(int id)
+        {
+            var apiResponse = await _http.GetFromJsonAsync<ProdutoApiModel>(
+                $"https://693a8f799b80ba7262ca6b6c.mockapi.io/produto/{id}"
+                );
+
+            if (apiResponse == null) return null;
+
+
+            return new Produto
+                {
+                    Id = int.Parse(apiResponse.id),
+                    Nome = apiResponse.nome,
+                    Preco = decimal.Parse(apiResponse.preco),
+                    Quantidade = int.Parse(apiResponse.quantidade)
+                }
+                ;
+        }
+
 
 
 
         // AJUSTAR OS OUTROS METODOS PARA BUSCAR NA API TAMBEM !!!!!!!!
 
+        /* 
         public Task<Produto?> GetById(int id)
         {
-
-
-
-
-
-
-
 
             return Task.FromResult(_produtos.FirstOrDefault(p => p.Id == id));
         }
@@ -94,5 +108,6 @@ namespace orquestraAPI.Pedidos.Infrastructure.Repositories
         {
             throw new NotImplementedException();
         }
+        */
     }
 }

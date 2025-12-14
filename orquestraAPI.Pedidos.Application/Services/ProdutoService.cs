@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace orquestraAPI.Pedidos.Application.Services
 {
-    public class ProdutoService
+    public class ProdutoService 
     {
         private readonly IProdutoRepository _repository;
 
@@ -25,6 +25,7 @@ namespace orquestraAPI.Pedidos.Application.Services
             return await _repository.GetById(id);
         }
 
+        /*
         public async Task Criar(ProdutoDTO dto)
         {
             var produto = new Produto
@@ -53,5 +54,6 @@ namespace orquestraAPI.Pedidos.Application.Services
         {
             await _repository.Delete(id);
         }
+        */
     }
 }

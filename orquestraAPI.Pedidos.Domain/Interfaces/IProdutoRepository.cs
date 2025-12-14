@@ -11,6 +11,8 @@ namespace orquestraAPI.Pedidos.Domain.Interfaces
     {
         Task<IEnumerable<Produto>> GetAll();
         Task<Produto?> GetById(int id); // permite retorno nulo
+
+        /*
         Task Add(Produto produto);
         Task Update(Produto produto);
         Task Delete(int id);
@@ -18,5 +20,6 @@ namespace orquestraAPI.Pedidos.Domain.Interfaces
         // análises
         Task<int> TotalProdutos();
         Task<Produto?> ProdutoMaisCaro(); // permite retorno nulo caso não haja produtos
+        */
     }
 }
